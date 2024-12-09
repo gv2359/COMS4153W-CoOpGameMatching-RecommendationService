@@ -1,6 +1,7 @@
+import os
 from framework.services.service_factory import BaseServiceFactory
-import app.resources.recommendation_resource as notification_resource
-from framework.services.data_access.MySQLRDBDataService import MySQLRDBDataService
+import app.resources.recommendation_resource as recommendation_resource
+from app.services.DataAccess.RecommendationServiceDataService import RecommendationDataService
 
 
 # TODO -- Implement this class
@@ -14,12 +15,18 @@ class ServiceFactory(BaseServiceFactory):
         #
         # TODO -- The terrible, hardcoding and hacking continues.
         #
+
+        context = {
+            "host": os.getenv("DB_HOST"),
+            "port": int(os.getenv("DB_PORT")),
+            "user": os.getenv("DB_USER"),
+            "password": os.getenv("DB_PASSWORD"),
+        }
+
         if service_name == 'RecommendationResource':
-            result = notification_resource.RecommendationResource(config=None)
+            result = recommendation_resource.RecommendationResource(config=None)
         elif service_name == 'RecommendationResourceDataService':
-            context = dict(user="root", password="dbpassuser",
-                           host="w4153.cl9cloxvh1sk.us-east-1.rds.amazonaws.com", port=3306)
-            data_service = MySQLRDBDataService(context=context)
+            data_service = RecommendationDataService(context=context)
             result = data_service
         else:
             result = None

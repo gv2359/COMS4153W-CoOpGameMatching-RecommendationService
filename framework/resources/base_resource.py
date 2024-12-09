@@ -7,8 +7,4 @@ class BaseResource(ABC):
     def __init__(self, config):
         self.config = config
 
-    @abstractmethod
-    def get_by_key(self, key) -> Any:
-        raise NotImplementedError()
-
 

@@ -2,3 +2,6 @@
 venv/
 .idea/
 __pycache__/
+app/.DS_Store
+framework/services/.DS_Store
+framework/services/data_access/.DS_Store
