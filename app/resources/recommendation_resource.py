@@ -13,7 +13,7 @@ class RecommendationResource(BaseResource):
         super().__init__(config)
 
         self.data_service = ServiceFactory.get_service("RecommendationResourceDataService")
-        self.database = "Games"
+        self.database = "Game"
         self.collection = "games_info"
         self.key_field = "gameId"
 

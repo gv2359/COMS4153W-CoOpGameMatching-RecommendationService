@@ -42,7 +42,7 @@ class RecommendationDataService(MySQLDataService):
         database = self.context["database"]
 
         # Build the SQL query with optional filters
-        base_query = "SELECT * FROM Games.game_info ORDER BY RAND()"
+        base_query = f"SELECT * FROM {database}.game_info ORDER BY RAND()"
 
         base_query += " LIMIT %s"
         params = [num_recoms]
