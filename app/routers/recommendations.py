@@ -11,7 +11,7 @@ router = APIRouter()
 
 
 @router.get("/recommendations/{user_id}", response_model=Recommendations)
-async def get_recommendations(user_id: str, num_recoms: int = Query(5, ge=1)) -> Recommendations:
+async def get_recommendations(user_id: str, num_recoms: int = Query(3, ge=1)) -> Recommendations: #  set number of recommendations to 3 by default
     try:
         res = ServiceFactory.get_service("RecommendationResource")
         recoms = res.get_recoms(user_id, num_recoms)
