@@ -45,7 +45,7 @@ class RecommendationDataService(MySQLDataService):
         base_query = f"SELECT * FROM {database}.game_info ORDER BY RAND()"
 
         base_query += " LIMIT %s"
-        params = [num_recoms]
+        params = [6]
 
         # Execute the query and return the results
         return self.execute_query(base_query, params)
