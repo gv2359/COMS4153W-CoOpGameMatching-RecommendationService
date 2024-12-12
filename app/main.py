@@ -1,6 +1,8 @@
 from fastapi import Depends, FastAPI
 import uvicorn
 from dotenv import load_dotenv
+# it loads from the .env file
+load_dotenv()
 from fastapi.middleware.cors import CORSMiddleware
 
 from app.routers import recommendations
@@ -15,8 +17,6 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# it loads from the .env file
-load_dotenv()
 
 app.include_router(recommendations.router)
 
