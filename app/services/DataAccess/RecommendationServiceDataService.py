@@ -37,15 +37,22 @@ class RecommendationDataService(MySQLDataService):
                 """)
                 connection.commit()
 
-    def get_recommendations(self, game_id: str, num_recoms: int):
+    # def get_recommendations(self, game_id: str, num_recoms: int):
 
-        database = self.context["database"]
+    #     database = self.context["database"]
 
-        # Build the SQL query with optional filters
-        base_query = f"SELECT * FROM {database}.game_info ORDER BY RAND()"
+    #     # Build the SQL query with optional filters
+    #     base_query = f"SELECT * FROM {database}.game_info ORDER BY RAND()"
 
-        base_query += " LIMIT %s"
-        params = [6]
+    #     base_query += " LIMIT %s"
+    #     params = [6]
 
-        # Execute the query and return the results
-        return self.execute_query(base_query, params)
+    #     # Execute the query and return the results
+    #     return self.execute_query(base_query, params)
+    def get_all_games(self):
+        query = f"SELECT * FROM {self.database_name}.game_info"
+        return self.execute_query(query, [])
+
+    def get_user_favorites(self, user_id: str):
+        query = f"SELECT * FROM {self.database_name}.user_favorites WHERE user_id = %s"
+        return self.execute_query(query, [user_id])
